@@ -129,7 +129,7 @@ class Annotator:
             self.draw = ImageDraw.Draw(self.im)
             try:
                 font = check_font("Arial.Unicode.ttf" if non_ascii else font)
-                size = font_size or max(round(sum(self.im.size) / 2.5 * 0.0035), 9)
+                size = font_size or max(round(sum(self.im.size) / 2 * 0.035), 12)
                 self.font = ImageFont.truetype(str(font), size)
             except Exception:
                 self.font = ImageFont.load_default()
@@ -140,7 +140,7 @@ class Annotator:
             assert im.data.contiguous, "Image not contiguous. Apply np.ascontiguousarray(im) to Annotator input images."
             self.im = im if im.flags.writeable else im.copy()
             self.tf = max(self.lw - 1, 1)  # font thickness
-            self.sf = self.lw / 3  # font scale
+            self.sf = self.lw / 5  # font scale
         # Pose
         self.skeleton = [
             [16, 14],
